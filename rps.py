@@ -27,19 +27,27 @@ LANGUAGES = {
 def play_game(language):
     lang = LANGUAGES[language]
     options = lang['options']
-    print(f"Vamos jogar Pedra, Papel, Tesoura!" if language == 'pt' else "Let's play Rock, Paper, Scissors!")
-    
+    print(
+        "Vamos jogar Pedra, Papel, Tesoura!"
+        if language == 'pt'
+        else "Let's play Rock, Paper, Scissors!"
+    )
+
     while True:
-        user_choice = input(f"Escolha sua arma: ") if language == 'pt' else input("Your weapon of choice: ")
+        user_choice = (
+            input("Escolha sua arma: ")
+            if language == 'pt'
+            else input("Your weapon of choice: ")
+        )
         user_choice = user_choice.lower()
-        
+
         if user_choice not in options:
             print(lang['invalid_option'])
             continue
-        
+
         computer_choice = random.choice(options)
         print(lang['computer_choice'].format(choice=computer_choice.capitalize()))
-        
+
         if user_choice == computer_choice:
             print(lang['tie'])
         elif (user_choice == 'rock' and computer_choice == 'scissors') or \
@@ -48,7 +56,7 @@ def play_game(language):
             print(lang['win'])
         else:
             print(lang['lose'])
-        
+
         play_again = input(lang['play_again'])
         if play_again.lower() == 'n':
             print(lang['goodbye'])
